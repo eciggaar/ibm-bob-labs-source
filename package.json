@@ -1,10 +1,15 @@
 {
   "scripts": {
-    "dev": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "preview": "vitepress preview docs"
+    "dev:ccx": "cross-env WORKSHOP=ccx vitepress dev docs",
+    "dev:baw": "cross-env WORKSHOP=baw vitepress dev docs",
+    "build:ccx": "cross-env WORKSHOP=ccx vitepress build docs",
+    "build:baw": "cross-env WORKSHOP=baw vitepress build docs",
+    "preview:ccx": "vitepress WORKSHOP=ccx preview docs",
+    "preview:baw": "vitepress WORKSHOP=baw preview docs"
   },
   "devDependencies": {
+    "@types/node": "^26.6.5",
+    "cross-env": "^10.1.0",
     "mermaid": "^12.1.0",
     "vitepress": "2.0.0-alpha.20",
     "vitepress-mermaid-renderer": "^1.2.2",
