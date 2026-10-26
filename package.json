@@ -2,6 +2,7 @@
   "scripts": {
     "dev:ccx": "cross-env WORKSHOP=ccx vitepress dev docs",
     "dev:baw": "cross-env WORKSHOP=baw vitepress dev docs",
+    "build": "vitepress build docs",
     "build:ccx": "cross-env WORKSHOP=ccx vitepress build docs",
     "build:baw": "cross-env WORKSHOP=baw vitepress build docs",
     "preview:ccx": "vitepress WORKSHOP=ccx preview docs",
