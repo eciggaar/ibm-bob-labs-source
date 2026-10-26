@@ -1,4 +1,5 @@
 {
+  "type":"module",
   "scripts": {
     "dev:ccx": "cross-env WORKSHOP=ccx vitepress dev docs",
     "dev:baw": "cross-env WORKSHOP=baw vitepress dev docs",
