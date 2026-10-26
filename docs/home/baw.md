@@ -9,12 +9,15 @@ hero:
   actions:
     - theme: brand
       text: Start Here →
-      link: /baw-lab/generate-docs/
+      link: /baw-lab/install-baw-modes/
 
 features:
   - title: 🛠️ Get Started with IBM Bob
     details: Install IBM Bob, set up your environment, and learn the IDE basics — including modes, MCP servers, and skills — before diving into the labs.
     link: /ibm-bob/
+  - title: "🧩 Pre-lab — Install the BAW modes and skills"
+    details: Mandatory set-up for all labs. Prepare your lab folder, open it as a Bob workspace, and install the IBM BAW Author and IBM BAW Admin modes and the BAW skills globally.
+    link: /baw-lab/install-baw-modes/
   - title: 🗂️ Generate current project documentation
     details: Turn a TWX, BPMN + XSD pair, or ZIP archive into comprehensive documentation covering processes, services, integrations, business objects, and other artifacts.
     link: /baw-lab/generate-docs/
@@ -27,7 +30,4 @@ features:
   - title: 🔎 Understand dependencies before change
     details: Trace where a variable or Business Object is declared, read, written, and bound across the application, with risks such as circular references highlighted.
     link: /baw-lab/trace-dependencies/
-  - title: 🔄 Lab 5 — Working title 5
-    details: One or two sentences on what attendees do and learn.
-    link: /baw-lab/lab-5/
 ---

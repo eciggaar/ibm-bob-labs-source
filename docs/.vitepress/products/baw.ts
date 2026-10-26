@@ -8,57 +8,47 @@ const baw: ProductConfig = {
     bobSection,
 
     {
-      text: 'Lab 1: Title',
+      text: 'Pre-Lab: Install BAW Modes and Skills',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/baw-lab/lab-1/' },
-        { text: 'Step 1', link: '/baw-lab/lab-1/01-step-one' },
-        { text: 'Step 2', link: '/baw-lab/lab-1/02-step-two' },
-        { text: 'Step 3', link: '/baw-lab/lab-1/03-step-three' },
+        { text: 'Overview', link: '/baw-lab/install-baw-modes/' },
+        { text: 'Instructions', link: '/baw-lab/install-baw-modes/instructions' },
       ],
     },
 
     {
-      text: 'Lab 2: Title',
+      text: 'Lab 1: Generate Project Documentation',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/baw-lab/lab-2/' },
-        { text: 'Step 1', link: '/baw-lab/lab-2/01-step-one' },
-        { text: 'Step 2', link: '/baw-lab/lab-2/02-step-two' },
-        { text: 'Step 3', link: '/baw-lab/lab-2/03-step-three' },
+        { text: 'Overview', link: '/baw-lab/generate-docs/' },
+        { text: 'The Challenge', link: '/baw-lab/generate-docs/challenge' },
       ],
     },
 
     {
-      text: 'Lab 3: Title',
+      text: 'Lab 2: Assess Toolkit Upgrade Impact',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/baw-lab/lab-3/' },
-        { text: 'Step 1', link: '/baw-lab/lab-3/01-step-one' },
-        { text: 'Step 2', link: '/baw-lab/lab-3/02-step-two' },
-        { text: 'Step 3', link: '/baw-lab/lab-3/03-step-three' },
+        { text: 'Overview', link: '/baw-lab/toolkit-dependencies/' },
+        { text: 'The Challenge', link: '/baw-lab/toolkit-dependencies/challenge' },
       ],
     },
 
     {
-      text: 'Lab 4: Title',
+      text: 'Lab 3: Validate Endpoints Before Migration',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/baw-lab/lab-4/' },
-        { text: 'Step 1', link: '/baw-lab/lab-4/01-step-one' },
-        { text: 'Step 2', link: '/baw-lab/lab-4/02-step-two' },
-        { text: 'Step 3', link: '/baw-lab/lab-4/03-step-three' },
+        { text: 'Overview', link: '/baw-lab/validate-endpoints/' },
+        { text: 'The Challenge', link: '/baw-lab/validate-endpoints/challenge' },
       ],
     },
 
     {
-      text: 'Lab 5: Title',
+      text: 'Lab 4: Understand Dependencies Before Change',
       collapsed: true,
       items: [
-        { text: 'Overview', link: '/baw-lab/lab-5/' },
-        { text: 'Step 1', link: '/baw-lab/lab-5/01-step-one' },
-        { text: 'Step 2', link: '/baw-lab/lab-5/02-step-two' },
-        { text: 'Step 3', link: '/baw-lab/lab-5/03-step-three' },
+        { text: 'Overview', link: '/baw-lab/trace-dependencies/' },
+        { text: 'The Challenge', link: '/baw-lab/trace-dependencies/challenge' },
       ],
     },
   ],
