@@ -15,7 +15,7 @@ You do not need any prior experience with genAI or IBM Bob. Every step is descri
 | **Mode** | Shapes how Bob approaches a task: its role, its expertise, and which skills it reaches for. | **IBM BAW Author** behaves like a BAW process-authoring expert. **IBM BAW Admin** behaves like a BAW operations and administration assistant. |
 | **Skill** | A focused instruction set (a `SKILL.md` file, sometimes with helper scripts) that gives Bob one specific capability. | The `baw-project-doc` skill reads a TWX export and writes documentation for it. |
 
-Some of the skills run Python scripts. That is why Python was part of the pre-requisites.
+Some of the skills run Python scripts. That is why Python is part of the pre-requisites.
 
 ## 🎯 What you will learn
 
