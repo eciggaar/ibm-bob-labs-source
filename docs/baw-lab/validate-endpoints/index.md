@@ -1,5 +1,9 @@
 ---
 title: Lab 3 — Validate Endpoints Before Migration
+prev:
+  text: 'Lab 2: The Challenge'
+next:
+  text: 'Lab 3: The Challenge'
 ---
 
 # Lab 3 — Validate Endpoints Before Migration

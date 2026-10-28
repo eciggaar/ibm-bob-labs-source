@@ -1,5 +1,7 @@
 ---
 title: Lab 1 — Generate BAW Application Documentation
+next:
+  text: 'Lab 1: The Challenge'
 ---
 
 # Lab 1 — Generate BAW Application Documentation

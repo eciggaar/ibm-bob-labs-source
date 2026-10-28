@@ -1,5 +1,10 @@
 ---
 title: Validate the endpoints
+prev:
+  text: 'Lab 3: Overview'
+next:
+  text: 'Lab 4: Overview'
+
 ---
 
 ## 📦 Clue 1 - The Old Address

@@ -1,5 +1,9 @@
 ---
 title: Lab 2 — Assess Toolkit Upgrade Impact
+prev:
+  text: 'Lab 1: The Challenge'
+next:
+  text: 'Lab 2: The Challenge'
 ---
 
 # Lab 2 — Assess Toolkit Upgrade Impact

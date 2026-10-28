@@ -1,5 +1,7 @@
 ---
 title: Trace the dependencies
+prev:
+  text: 'Lab 4: Overview'
 ---
 
 ## 📦 Clue 1 - The Data Web

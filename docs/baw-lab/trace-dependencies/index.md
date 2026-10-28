@@ -1,5 +1,9 @@
 ---
 title: Lab 4 — Understand Dependencies Before Change
+prev:
+  text: 'Lab 3: The Challenge'
+next:
+  text: 'Lab 4: The Challenge'
 ---
 
 # Lab 4 — Understand Dependencies Before Change

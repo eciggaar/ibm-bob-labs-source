@@ -1,5 +1,9 @@
 ---
 title: Generate the documentation
+prev:
+  text: 'Lab 1: Overview'
+next:
+  text: 'Lab 2: Overview'
 ---
 
 ## 📦 Clue 1 - The Archive
@@ -51,7 +55,13 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
 
 1. Bob will now parse the TWX archive and generate the documentation. It will ask for your approval before each operation — **approve each action individually** as it appears.
 
-::: info ✅ **Checkpoint** 
+::: warning ⚠️ **Tool Approvals During TWX Inspection**
+A BAW `.twx` export is a multi-layered ZIP archive containing dozens of specialized XML and JSON artifacts (BPD flow models, Client-Side Human Services, Coach View layout trees, `twClass` business object definitions, and Ajax service flows).
+
+To produce an accurate, hallucination-free document—including exact gateway branch conditions, boundary timer triggers, embedded scripts, and UI service bindings—Bob executes targeted inspection commands against the unpacked archive. **You will be prompted to approve multiple operations in sequence.** Please approve each action so Bob can thoroughly inspect each artifact layer.
+:::
+
+::: info ✅ **Checkpoint**
 - Bob confirms the documentation file has been written and displays a plain-language summary in the chat. The output path — for example `docs/baw/Hiring_Sample/Hiring_Sample-documentation.md` — is shown in the response.
 :::
 
