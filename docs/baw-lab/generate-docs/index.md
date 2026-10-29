@@ -12,6 +12,6 @@ In this lab you will ask IBM Bob to generate documentation for the **Hiring Samp
 
 - How Bob reads a TWX export to extract processes, services, business objects, coach views, and environment variables without any manual steps
 - How to invoke a Bob skill with a plain-language prompt and let it drive the workflow
-- How the four audience types shape the output — from an executive summary to a full technical reference
+- How the four audience profiles guide documentation depth — from an executive summary to a full technical reference
 - How to verify and navigate the generated Markdown documentation
 

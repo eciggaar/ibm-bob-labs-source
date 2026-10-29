@@ -36,10 +36,10 @@ Bob then writes a Markdown report and summarizes it in the chat, with fix guidan
 The lab application is `OrderManagement.twx` — an order fulfilment process that takes an order from placement through inventory check, reviewer inspection, payment, and shipment to closure. It is moving from a source BAW server (`baw-source.mycompany.com`) to a production server (`baw-prod.mycompany.com`). The source and target environments are described in `source.properties` and `target.properties`.
 
 ::: tip 💡 **Working with Bob — what to expect**
-- **A skill is a repeatable procedure.** `baw-endpoint-validation` encodes the steps an experienced administrator would follow. Bob runs the scan with a script, so the *findings* come from a deterministic scan of the TWX, not from Bob's judgement.
-- **Bob's wording and order of steps can differ between runs.** The same prompt can produce slightly different phrasing, a different table layout, or findings grouped differently. The facts — which artifacts contain which hardcoded values — should not change. Check the facts, not the wording.
-- **Approvals are your control point.** Bob asks before it runs commands or writes files. Read each request before you approve it.
-- **Treat Bob's output like a colleague's work.** You are the expert on your environments. Challenge 2 shows you how to check that Bob understood them before you trust the findings.
+- **A skill is a repeatable procedure.** `baw-endpoint-validation` encodes the steps an experienced administrator would follow. Findings come from a deterministic scan of the TWX XML for 100% precision.
+- **Bob's wording and presentation adapt dynamically.** While phrasing or grouping may vary naturally, the underlying facts and detected endpoints remain deterministic.
+- **Approvals are your control point.** Bob asks before reading files or writing reports. Review each request before approving.
+- **Combine AI speed with expert oversight.** You know your deployment topology best—use Challenge 2 to verify that environment mappings are confirmed before promoting artifacts.
 :::
 
 ---
@@ -65,7 +65,7 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
    :::
 
 1. Press **Enter** and click **Approve skill tools for task** when prompted.
-1. Bob asks for the information your prompt did not contain, **one question at a time**. Answer each question as follows:
+1. Bob asks for the information your prompt did not contain, **one question at a time**. Answer each question as follows, and approve file generation as Bob runs the scan and writes `docs/lab3-output/endpoint-validation-report.md`:
 
    | When Bob asks about… | Answer |
    |----------------------|--------|
@@ -73,15 +73,13 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
    | The source endpoints | The **source** environment is described in `lab-3/source.properties` |
    | The target endpoints | The **target** environment is described in `lab-3/target.properties` |
 
-   ::: tip 💡 **Tip** 
+   ::: tip 💡 **Tip**
    Always label each file as source or target in your answer. If you give a file without a label, Bob asks which environment it belongs to.
    :::
 
-   ::: warning ⚠️ **If Bob does not ask questions**
-   If Bob goes straight to the scan without asking for the deployment type, source, and target, it has found the files on its own. Check which file it treated as source and which as target (Challenge 2 does this in detail). Then, to practice the interactive flow, start a new chat and repeat the prompt above exactly, including the last two lines.
+   ::: info 💡 **Context-Aware Discovery vs Interactive Intake**
+   Bob is designed to be intelligent and context-aware—if environment files exist in the workspace, it can automatically detect them to save you time. In this lab, we explicitly instruct Bob with step-by-step guidance to demonstrate conversational data intake.
    :::
-
-1. Bob now reads the environment files, scans the TWX, and writes the report. Several approvals appear — for temporary working files, the scan, and the report. **Approve each action individually** as it appears. The report is written to `docs/lab3-output/endpoint-validation-report.md`.
 
 ::: info ✅ **Checkpoint**
 - Bob asked you for the deployment type, the source endpoints, and the target endpoints.

@@ -13,7 +13,7 @@ In this lab you will ask IBM Bob to check a process application before you move 
 ## 🎯 What you will learn
 
 - How Bob collects the source and target endpoints, and how your prompt controls whether Bob asks questions or uses files it finds in the workspace
-- How to check Bob's output against your own knowledge of the environments before you trust it
+- How to verify Bob's endpoint mappings against your environment specifications before approving changes
 - How Bob scans the TWX for hardcoded references to the source servers, without a connection to a BAW server
 - How findings are classified as Critical, Warning, or Info, including harmless BAW-internal `localhost` references that need no change
 - How to use the report's *Where to fix* guidance to resolve each blocker in Workflow Designer, the Process Admin Console, or on the server, and which fixes need a new snapshot

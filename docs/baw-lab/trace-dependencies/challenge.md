@@ -21,7 +21,7 @@ For each Business Object, the skill identifies:
 - **Issues detected:** Potential data flow anomalies, including circular references between BOs, over-coupling (a BO mutated across too many writer services), write-only variables, missing output mappings, unused BO types, and stale coach bindings.
 - **Impact assessment:** An advisory risk assessment covering field additions, removals, renames, type changes, or full BO deletion.
 
-To do this, the skill executes a static analysis script on the TWX file and writes the reports to the folder you specify: a structured Markdown report (`<BO>-dependency-report.md`) and a companion JSON file (`<BO>-dependency-report.json`) for each Business Object, along with a combined summary in the chat.
+Bob combines deterministic static parsing of the TWX file with natural language reasoning, writing structured reports (`<BO>-dependency-report.md` and `.json`) to your specified folder while delivering an interactive dependency summary in the chat.
 
 The lab application is `OrderFulfillment.twx`, an order fulfillment process application modeling an end-to-end order lifecycle with order placement, validation, inventory check, warehouse operator review, payment processing, and shipment creation. It defines five Business Objects: `Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`.
 
@@ -41,12 +41,11 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
    Write any output to docs/lab4-output/
    ```
 
-   ::: warning ℹ️ **NOTE**
-   Bob doesn't analyze the TWX file itself. It runs an analysis script that is part of the skill and then explains the results. The report files are reproducible. Bob's wording in the chat may vary from run to run.
+   ::: tip 💡 **Deterministic Scanning & AI Synthesis**
+   Bob uses deterministic static analysis tools under the hood for 100% structural precision when parsing TWX XML, and applies AI reasoning to synthesize cross-service data flows, answer complex dependency questions, and generate actionable refactoring plans.
    :::
 
-1. Press **Enter** and click **Approve skill tools for task** when prompted.
-1. Watch Bob work in the chat panel. Approve actions as prompted, and wait until Bob presents the combined dependency summary before starting another prompt or closing the chat.
+1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve actions as prompted, and wait until Bob presents the combined dependency summary before starting another prompt or closing the chat.
 
 ::: info ✅ **Checkpoint**
 - Bob lists the five Business Objects found in the application (`Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`) and presents a combined dependency summary in the chat.
@@ -60,39 +59,25 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 1. In the Explorer, navigate to `docs/lab4-output/` and open `Order-dependency-report.md`.
 1. Open the Markdown preview to inspect the rendered diagrams and tables: right-click the editor tab and choose **Open Preview**. Alternatively, click once inside the report text in the editor, so the editor has focus rather than the Explorer, and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
 1. Read the **Summary** at the top of the report. It states how many places in the application use `Order`: **47 locations**.
-1. Scroll to the **Dependency graph**. In the preview you see these shapes:
-   - **Rectangle:** The subject of the report. Every arrow starts or ends here.
-   - **Circle:** The Business Object definition. Its `declares` arrow points to the rectangle.
-   - **Flag shape:** A service or a coach that takes `Order` as an input or output (for example `ValidateOrder`, `CheckInventory`, `ProcessPayment`, `CreateShipment`, `ReviewOrder`, `ResolveShipmentDelay`, and `HandlePaymentFailure`). Read the label inside the box, `[service]` or `[coach]`, to tell them apart.
-   - **Diamond:** A coach with field-level bindings, drawn with a dashed arrow. Because the diagram shows only 20 nodes, you may not see diamonds in the `Order` diagram. You can see them in the `Customer` report.
-   - **Arrows and their labels:** Each arrow is one relationship (`declares`, `written by`, `input to`, `outputs`). A service such as `ValidateOrder` has several arrows to and from `Order`, one for each relationship, so the labels can overlap and the diagram looks crowded. The tables further down list each relationship on its own row and are easier to read.
-   - **"... and N more node(s) omitted for readability":** A note box, not an artifact. It tells you how many nodes did not fit in the diagram.
+1. Scroll to the **Dependency graph** and inspect the visual model:
+   - Locate the center **Rectangle** (`Order`) and the **Circle** node representing the BO definition.
+   - Identify the **Flag shapes** representing services (`[service]`) and coaches (`[coach]`) with I/O bindings (`ValidateOrder`, `CheckInventory`, `ProcessPayment`, `CreateShipment`, etc.).
+   - Notice the note box indicating nodes omitted for diagram readability (the diagram caps at 20 nodes; complete references are preserved in the tables below).
 1. Scroll down to review the detailed usage tables:
-   - **Declarations:** 4 rows. The first row is the `Order` BO definition. Its Detail column says it has 11 fields but lists only the first 8 (the list ends with "…"). The other 3 rows are the `order : Order` variables declared in `ValidateOrder`, `CheckInventory`, and `ProcessPayment`.
-   - **Write usages:** The services whose script steps change `Order` data. Here these are `ValidateOrder` (sets the order status), `CheckInventory` (sets the inventory status), and `ProcessPayment` (sets the payment status). This tells you which services you have to look at if an `Order` field ends up with an unexpected value.
-   - **Service input/output bindings:** Which services and coaches receive `Order` as an input parameter (`dataInput`) and which ones return it as an output parameter (`dataOutput`). Think of the input and output mappings you define on a service or coach in Process Designer. This tells you which interfaces to check when the structure of `Order` changes, for example if a field is added, renamed, or removed.
-   - **Coach bindings:** The individual fields of `Order` that are bound to controls in a coach, for example `orderId`, `status`, `totalAmount`, `inventoryStatus`, and `paymentStatus`. Each row is one control on a coach that shows or edits a field, such as `tw.local.order.totalAmount`. This tells you which screens a person would notice if a field changes.
-
-   ::: tip 💡 **Tip** 
-   The dependency diagram displays up to 20 nodes for readability. The usage tables below the diagram contain the complete record of every reference. Use the tables when you need the full list.
-   :::
-
-1. Use the report to answer the first two questions:
-   - Which three services write to the `Order` Business Object? *(Write usages table)*
-   - Which coaches bind to fields of `Order`? *(Coach bindings table)*
-
-1. For the third question, **ask Bob** in the same chat session:
+   - **Declarations:** Note the 4 rows (the `Order` BO definition with 11 fields and the 3 service variable declarations).
+   - **Write usages:** Identify services whose scripts mutate `Order` data (`ValidateOrder`, `CheckInventory`, `ProcessPayment`).
+   - **Service I/O bindings:** Review services and coaches mapping `Order` as `dataInput` or `dataOutput`.
+   - **Coach bindings:** Review controls bound to specific fields (e.g., `orderId`, `status`, `totalAmount`).
+1. Verify writers, coach bindings, and nested objects:
+   - Answer from the tables: Which three services write to `Order`, and which coaches bind to `Order` fields?
+   - Then **ask Bob** in the same chat session to identify nested Business Objects (since the table preview truncates to the first 8 fields):
 
    ```
-   Which fields of the Order Business Object are themselves Business Objects, 
+   Which fields of the Order Business Object are themselves Business Objects,
    and what are their types?
    ```
 
-   Expected answer: `customer : Customer` and `lines : OrderLine` (a list).
-
-   ::: warning ℹ️ **NOTE**
-   The report shortens the BO definition to the first 8 of the 11 fields, so the nested Business Objects aren't listed in the file. This is your first example of asking Bob a follow-up question about the analysis. Bob's wording will differ from the example, but the field names and types should match.
-   :::
+   *Expected answer: `customer : Customer` and `lines : OrderLine` (a list).*
 
 ::: info ✅ **Checkpoint**
 - `Order-dependency-report.md` opens cleanly in the Markdown preview with a rendered Mermaid diagram and complete usage tables.
@@ -149,16 +134,14 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
    The scenarios apply to any field of `Order`. To find out what a specific change affects, **ask Bob** in the same chat session what breaks if you rename the `totalAmount` field:
 
    ```
-   I want to rename the totalAmount field to orderTotal in the Order 
+   I want to rename the totalAmount field to orderTotal in the Order
    Business Object. What artifacts would break and need to be updated?
    ```
 
-1. Review Bob's response:
+   Review Bob's response and verify:
    - Bob names the three coaches that bind to `totalAmount`: `PlaceOrder`, `ReviewOrder`, and `HandlePaymentFailure`.
-   - Bob also finds two services whose scripts use the field: `ValidateOrder` and `ProcessPayment`. The report doesn't show this, because it lists which services use `Order`, not which fields they use. Bob had to look inside the application.
-   - Bob may point out that `ValidateOrder` checks `totalAmount < 10`. After a rename, that check would no longer work as intended unless the script is updated, and the report doesn't list it.
-   - Bob may also mention the `Order` BO definition itself, and the documents attached to the application that mention the field. That's correct.
-   - Compare Bob's answer with the **Coach bindings** table in the report. The three coaches should match.
+   - Bob inspects script logic to pinpoint two services using the field: `ValidateOrder` (`totalAmount < 10` check) and `ProcessPayment` (logging).
+   - Compare Bob's answer with the **Coach bindings** table in the report to confirm alignment.
 
 1. Ask Bob to turn the analysis into a plan, in the same chat session:
 

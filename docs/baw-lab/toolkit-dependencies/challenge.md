@@ -17,9 +17,9 @@ The `baw-toolkit-analyzer` skill analyzes the toolkit dependencies of a process 
 - Reads the toolkit dependencies that the application declares, with the snapshot of each toolkit.
 - Opens the toolkits that are embedded in the TWX and reads which toolkits they depend on in turn.
 - Scans the application's artifacts to find which of them use items from each toolkit.
-- Checks the result for conflicting snapshots, circular dependencies, unused toolkits, and references to a toolkit that is no longer declared.
+- Checks the result for conflicting snapshots, unused toolkits, and references to a toolkit that is no longer declared.
 
-To do this, the skill runs a Python script on the TWX and writes the dependency report next to the TWX file: a Markdown report for you to read and a JSON file for further processing. Bob then reads the report and presents it in the chat.
+Bob combines deterministic static dependency scanning of the TWX with natural language reasoning, allowing you to not only generate comprehensive dependency graphs but also query complex impact questions conversationally.
 
 The skill has three analysis modes: a **full** analysis of all toolkit dependencies (the default), **where-used** to find which artifacts use a given toolkit, and **what-uses** to list which toolkit items a given artifact consumes. In this challenge you run the full analysis.
 
@@ -38,10 +38,9 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
    Please analyze the toolkit dependencies of ClaimsProcessing.twx
    ```
 
-1. Press **Enter** and click **Approve skill tools for task** when prompted.
-1. Bob now runs the analysis and writes the report. It asks for your approval before each operation — **approve each action individually** as it appears.
+1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve each action individually as Bob runs the analysis and writes the report.
 
-::: tip 💡 **Tip:** If Bob asks which analysis mode to use, choose the full analysis. The TWX file is the only input the skill needs.
+::: tip 💡 **Tip:** The TWX file is the only input the skill needs. Bob defaults to full analysis automatically.
 :::
 
 ::: info ✅ **Checkpoint**
@@ -93,12 +92,13 @@ Before you upgrade `RulesEngine`, you need to know exactly which artifacts depen
 
 1. Press **Enter** and approve each action as it appears.
 
-   ::: tip **NOTE** 
+   ::: tip ℹ️ **NOTE** 
    Notice how you stayed in the same chat and asked in plain language. Bob maintains conversation context, recognizing the target toolkit and automatically switching from the initial `full` analysis mode to a targeted `where-used` drill-down without requiring CLI flags or manual reconfiguration.
    :::
 
-1. Read Bob's answer. It lists the declared dependency on `RulesEngine` and every artifact that references an item from it.
-1. Open `toolkit-dependency-report.md` again. The report is regenerated for this question and ends with a **Where Used: `RE`** section. Compare it with Bob's answer.
+1. Read Bob's answer and review the regenerated report:
+   - In the chat, Bob provides a detailed analysis naming the declared dependency on `RulesEngine` (`RE`) and each artifact using it (`ClaimRequest` and `Calculate Settlement Amount`).
+   - Open `toolkit-dependency-report.md` in the Explorer to confirm the report has been dynamically regenerated and ends with a **Where Used: `RE`** section recording the drill-down target.
 
 ::: info ✅ **Final Checkpoint**
 - Bob lists two artifacts that use `RulesEngine`: the business object `ClaimRequest` and the service flow `Calculate Settlement Amount` (which uses `CalculateDeductible`).

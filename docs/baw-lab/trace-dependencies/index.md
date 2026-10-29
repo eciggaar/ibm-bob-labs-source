@@ -14,6 +14,6 @@ In this lab you will ask IBM Bob to analyze the Business Object dependencies of 
 
 - How Bob discovers Business Objects in a TWX export and maps their declarations, reads, writes, service bindings, and coach bindings
 - How to read the Mermaid dependency graph and navigate the detailed usage tables
-- How the skill flags potential data flow issues such as circular references, over-coupling, and stale coach bindings, and why candidate findings (🔍) require verification
+- How the skill flags potential data flow issues such as circular references, over-coupling, stale coach bindings, and uninitialized data reads
 - How to use the impact assessment matrix to determine what breaks before modifying, renaming, or deleting a Business Object field
 - How to invoke the `baw-dependency-mapper` skill with a plain-language prompt and review the reports it writes

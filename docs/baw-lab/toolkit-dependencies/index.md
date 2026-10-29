@@ -13,6 +13,6 @@ In this lab you will ask IBM Bob to analyze the toolkit dependencies of a BAW ap
 ## 🎯 What you will learn
 
 - How Bob maps the direct and transitive toolkit dependencies of an application from a TWX export
-- How the skill flags conflicting, circular, unused, and dangling (missing) toolkit dependencies
+- How the skill flags conflicting snapshots, unused toolkits, and dangling (missing) toolkit references
 - How to read the dependency graph and the dependency tables to judge the impact of a toolkit change
 - How to invoke a Bob skill with a plain-language prompt and review the report it writes

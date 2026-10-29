@@ -12,7 +12,7 @@ next:
 
 ### Background
 
-The `baw-project-doc` skill is a reusable instruction set that tells Bob exactly how to read a TWX export and turn it into structured Markdown documentation. It extracts processes, services, business objects, coach views, and environment variables — without any manual steps on your part. You pick the target audience; Bob drives the rest.
+The `baw-project-doc` skill automates the extraction and synthesis of BAW application documentation directly from an exported TWX archive. It parses process models, services, business objects, coach views, and environment variables to produce structured Markdown documentation tailored to your chosen stakeholder audience.
 
 The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is IBM's canonical demo application. It models a complete hiring process: candidates are submitted, screened by HR, interviewed by the hiring manager, and either approved or rejected — with notifications and escalations along the way.
 
@@ -21,8 +21,7 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
 ### 🔍 Challenge 1 — Confirm the TWX file is in your workspace
 
 1. In the Bob IDE Explorer panel, expand the `lab-1/` folder.
-1. Confirm `Hiring_Sample - Responsive_Hiring_Sample_v18001.twx` is present.
-1. Do **not** open, rename, or move it — the skill locates it automatically.
+1. Confirm `Hiring_Sample - Responsive_Hiring_Sample_v18001.twx` is present. (Do **not** open, rename, or move it — Bob accesses it directly).
 
 ::: info ✅ **Checkpoint**
 - The TWX file is visible in the Explorer inside the `lab-1/` folder.
@@ -34,7 +33,7 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
 
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Make sure **BAW Author** mode is selected and enter the following prompt:
+1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
 
    ```
    Help me to generate the documentation for my Hiring Sample application. 
@@ -52,13 +51,17 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
    | **Technical reference** | A complete technical record of every process, service, BO, and coach view |
 
    ::: tip 💡 **Tip:** Choose **Technical reference** to see the most complete output for this lab.
+   :::
 
-1. Bob will now parse the TWX archive and generate the documentation. It will ask for your approval before each operation — **approve each action individually** as it appears.
+   ::: info 👥 **Audience Profile Contrast**
+   - **Executive Summary:** Condensed 1–2 page overview highlighting business purpose, high-level SLA milestones, and decision routing without technical code structures.
+   - **Technical Reference:** Comprehensive engineering catalog documenting XML IDs, variable types, script task snippets, Ajax services, and Coach View bindings.
+   :::
 
-::: warning ⚠️ **Tool Approvals During TWX Inspection**
-A BAW `.twx` export is a multi-layered ZIP archive containing dozens of specialized XML and JSON artifacts (BPD flow models, Client-Side Human Services, Coach View layout trees, `twClass` business object definitions, and Ajax service flows).
+1. Approve each operation individually as Bob unpacks the archive, inspects artifact layers, and generates the Markdown documentation.
 
-To produce an accurate, hallucination-free document—including exact gateway branch conditions, boundary timer triggers, embedded scripts, and UI service bindings—Bob executes targeted inspection commands against the unpacked archive. **You will be prompted to approve multiple operations in sequence.** Please approve each action so Bob can thoroughly inspect each artifact layer.
+::: warning ⚠️ **Why multiple approvals appear**
+A BAW `.twx` export is a multi-layered ZIP archive containing dozens of specialized XML and JSON artifacts (BPD flow models, Client-Side Human Services, Coach View layout trees, `twClass` business object definitions, and Ajax service flows). Bob works through each artifact layer in turn — which is why you see several approval requests in sequence. Read each one before approving it.
 :::
 
 ::: info ✅ **Checkpoint**
