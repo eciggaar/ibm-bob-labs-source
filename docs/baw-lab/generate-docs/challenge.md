@@ -37,7 +37,7 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
 
    ```
    Help me to generate the documentation for my Hiring Sample application. 
-   Store the results in docs/baw/Hiring_Sample.
+   Store the results in docs/lab1-output/
    ```
 
 1. Press **Enter** and click **Approve skill tools for task** when prompted.
@@ -65,14 +65,14 @@ A BAW `.twx` export is a multi-layered ZIP archive containing dozens of speciali
 :::
 
 ::: info ✅ **Checkpoint**
-- Bob confirms the documentation file has been written and displays a plain-language summary in the chat. The output path — for example `docs/baw/Hiring_Sample/Hiring_Sample-documentation.md` — is shown in the response.
+- Bob confirms the documentation file has been written and displays a plain-language summary in the chat. The output path — for example `docs/lab1-output/Hiring_Sample-documentation.md` — is shown in the response.
 :::
 
 ---
 
 ### 📖 Challenge 3 — Review the generated documentation
 
-1. In the Explorer, navigate to `docs/baw/Hiring_Sample/` and open the generated `.md` file.
+1. In the Explorer, navigate to `docs/lab1-output/` and open the generated `.md` file.
 1. Scroll through the document and locate:
    - The **Application Overview** section at the top
    - A **Mermaid process flow diagram** showing the hiring steps as a flowchart
@@ -81,5 +81,5 @@ A BAW `.twx` export is a multi-layered ZIP archive containing dozens of speciali
 1. Confirm the Mermaid diagrams render as visual flowcharts in the preview pane.
 
 ::: info ✅ **Final Checkpoint**
-- The generated documentation file exists under `docs/baw/Hiring_Sample/`, contains at least one process flow diagram, a Business Objects section, and all content renders correctly in the Markdown preview.
+- The generated documentation file exists under `docs/lab1-output/`, contains at least one process flow diagram, a Business Objects section, and all content renders correctly in the Markdown preview.
 :::

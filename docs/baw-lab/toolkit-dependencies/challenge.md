@@ -35,7 +35,9 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
 
    ```
-   Please analyze the toolkit dependencies of ClaimsProcessing.twx
+   Please analyze the toolkit dependencies of ClaimsProcessing.twx.
+
+   Write any output to docs/lab2-output/
    ```
 
 1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve each action individually as Bob runs the analysis and writes the report.
@@ -45,7 +47,7 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 
 ::: info ✅ **Checkpoint**
 - Bob shows a summary of the toolkit dependencies in the chat.
-- In the Explorer, the folder `lab-2/ClaimsProcessing.twx - reports` exists and contains `toolkit-dependency-report.md` and `toolkit-dependency-report.json`.
+- In the Explorer, the folder `docs/lab2-output/` exists and contains `toolkit-dependency-report.md` and `toolkit-dependency-report.json`.
 :::
 
 ---
@@ -54,7 +56,7 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 
 Imagine you are about to promote `ClaimsProcessing` to production. Before you change or upgrade any toolkit, read the report to find out what is at risk.
 
-1. In the Explorer, expand `lab-2/ClaimsProcessing.twx - reports` and open `toolkit-dependency-report.md`.
+1. In the Explorer, expand `docs/lab2-output/` and open `toolkit-dependency-report.md`.
 1. Open the Markdown preview to see the dependency graph rendered: right-click the editor tab and choose **Open Preview**. Alternatively, click once inside the report text in the editor, so the editor has focus rather than the Explorer, and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
 1. Locate these sections of the report:
    - **1. Executive Summary** — the number of direct and transitive dependencies and the list of detected issues
