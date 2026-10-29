@@ -6,9 +6,9 @@ next:
   text: 'Lab 3: Overview'
 ---
 
-## 📦 Clue 1 - The Dependency Map
+## 🧱 Clue 1 - The Shared Foundation
 
-> *"Before you change a toolkit, you need to know who relies on it. The answer is already inside the export — you only have to ask for it."*
+> *"Toolkits make reuse simple. But when different parts of your application quietly depend on different versions of the same foundation, upgrading becomes a minefield."*
 
 ### Background
 
@@ -56,7 +56,7 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 Imagine you are about to promote `ClaimsProcessing` to production. Before you change or upgrade any toolkit, read the report to find out what is at risk.
 
 1. In the Explorer, expand `lab-2/ClaimsProcessing.twx - reports` and open `toolkit-dependency-report.md`.
-1. Open the Markdown preview to see the dependency graph rendered: right-click the editor tab and choose **Open Preview**, or press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
+1. Open the Markdown preview to see the dependency graph rendered: right-click the editor tab and choose **Open Preview**. Alternatively, click once inside the report text in the editor, so the editor has focus rather than the Explorer, and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
 1. Locate these sections of the report:
    - **1. Executive Summary** — the number of direct and transitive dependencies and the list of detected issues
    - **2. Direct Dependencies Overview** — one row per declared toolkit, with its snapshot and usage status

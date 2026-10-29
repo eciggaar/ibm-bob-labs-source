@@ -23,7 +23,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Lab Materials', link: '/ibm-bob/' },
+      { text: 'Lab Materials', link: 'https://ibm.box.com/s/smlk0jglpy7ge729vhmf6irk5wssr8bm', target: '_blank', rel: 'noopener noreferrer' },
     ],
     sidebar: p.sidebar,
     socialLinks: [

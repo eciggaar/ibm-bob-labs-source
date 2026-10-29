@@ -31,4 +31,3 @@ Make sure you have the following. These were part of the pre-requisites you rece
 - A valid IBMid. You need this to sign in to IBM Bob.
 - IBM Bob IDE is installed and running.
 - Python 3.13 or later installed.
-- The link to the Box note provided by the lab facilitators. It contains the lab ZIP file with all the `.twx` files that are needed for the labs.

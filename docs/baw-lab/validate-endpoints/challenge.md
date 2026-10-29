@@ -7,7 +7,7 @@ next:
 
 ---
 
-## 📦 Clue 1 - The Old Address
+## 🏷️ Clue 1 - The Old Address
 
 > *"The application is ready to move. The question is whether it still remembers where it came from."*
 
@@ -73,7 +73,8 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
    | The source endpoints | The **source** environment is described in `lab-3/source.properties` |
    | The target endpoints | The **target** environment is described in `lab-3/target.properties` |
 
-   ::: tip 💡 **Tip:** Always label each file as source or target in your answer. If you give a file without a label, Bob asks which environment it belongs to.
+   ::: tip 💡 **Tip** 
+   Always label each file as source or target in your answer. If you give a file without a label, Bob asks which environment it belongs to.
    :::
 
    ::: warning ⚠️ **If Bob does not ask questions**
@@ -94,7 +95,7 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
 
 Every finding depends on Bob having the source and target the right way round. Verify this before you trust the results.
 
-1. In the Explorer panel, right-click the generated report, `docs/lab3-output/endpoint-validation-report.md`, and choose **Open Preview** to read it rendered. Alternatively, open the file and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
+1. In the Explorer panel, right-click the generated report, `docs/lab3-output/endpoint-validation-report.md`, and choose **Open Preview** to read it rendered. Alternatively, click once inside the report text in the editor, so the editor has focus rather than the Explorer, and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
 1. Locate the **Environment Transition Summary** and the **Source → Target Endpoint Mapping** tables.
 1. Compare them with the two environment files you supplied:
    - The *source* column must contain `baw-source.mycompany.com` (BAW hostname), `db-source.mycompany.com` (database hostname), and `C:\IBM\BAW26` (install path).
@@ -111,7 +112,7 @@ Every finding depends on Bob having the source and target the right way round. V
 
 1. In the report, locate **TWX Hardcoded Reference Findings**. Find the totals for each group: 🔴 Critical, 🟡 Warning, and ℹ️ Info.
 
-   ::: tip 💡 **Tip:** Why there are more hits than problems
+   ::: tip 💡 Why there are more hits than problems
    BAW stores each service flow script in three places inside the TWX: the editable script block, a `jsonData` snapshot, and a `bpmn2Model` block. One hardcoded URL in one script task therefore produces up to three raw hits in the scan — one actionable, two auto-generated echoes that disappear when you re-save the artifact in Designer.
 
    There are **five distinct problems** across **four artifacts** in this TWX. Look for all five in the findings table. Bob may surface the echo hits as separate rows or collapse them into notes — either way is correct. What matters is that all five problems are present, not the total row count.
@@ -169,7 +170,8 @@ Every finding depends on Bob having the source and target the right way round. V
 
 1. Review Bob's answer. It should point you to the **Process Admin Console** → **Installed Apps** → the snapshot's overflow menu → **App Details** → **Servers** tab, where you update the hostname, port, and secure server setting of each REST server binding.
 
-   ::: tip 💡 **Tip:** Bob explains where to make each change. You make it yourself in Workflow Designer, the Process Admin Console, or on the target server — the skill never edits your TWX.
+   ::: tip 💡 **Tip** 
+   Bob explains where to make each change. You make it yourself in Workflow Designer, the Process Admin Console, or on the target server — the skill never edits your TWX.
    :::
 
 1. Compare this answer with Challenge 3. The Process Admin Console changes **REST server bindings** on an installed snapshot. It does not change URLs typed into scripts. Which of the findings in your report could be fixed this way, and which still need a new snapshot built in Workflow Designer?

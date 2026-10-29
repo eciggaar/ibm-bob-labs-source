@@ -74,7 +74,7 @@ To produce an accurate, hallucination-free document—including exact gateway br
    - The **Application Overview** section at the top
    - A **Mermaid process flow diagram** showing the hiring steps as a flowchart
    - The **Business Objects** section listing the data structures used by the process
-1. Open the Markdown preview to see the diagrams rendered: right-click the editor tab and choose **Open Preview**, or press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
+1. Open the Markdown preview to see the diagrams rendered: right-click the editor tab and choose **Open Preview**. Alternatively, click once inside the document text in the editor, so the editor has focus rather than the Explorer, and press **Cmd + Shift + V** (macOS) / **Ctrl + Shift + V** (Windows/Linux).
 1. Confirm the Mermaid diagrams render as visual flowcharts in the preview pane.
 
 ::: info ✅ **Final Checkpoint**

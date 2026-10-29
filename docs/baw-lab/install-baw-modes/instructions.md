@@ -25,8 +25,8 @@ All lab material goes in one parent folder named `bob-baw-workshop`. You choose 
 
 ## 📦 Step 2 — Download and extract the lab ZIP file
 
-1. Open the Box note provided by the lab facilitators.
-1. Download `labs.zip` to your laptop.
+1. In the top navigation bar of this site, click **Lab Materials** to open the download page.
+1. Click the **Download** button in the upper-right corner to download `labs.zip` to your laptop.
 1. Move `labs.zip` into the `bob-baw-workshop` folder.
 1. Extract `labs.zip` inside the `bob-baw-workshop` folder:
 
