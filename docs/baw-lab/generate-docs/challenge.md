@@ -31,7 +31,7 @@ The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is
 
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
 
    ```
    Help me to generate the documentation for my Hiring Sample application. 

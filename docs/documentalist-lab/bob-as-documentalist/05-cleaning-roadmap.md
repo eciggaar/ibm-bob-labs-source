@@ -4,7 +4,7 @@ You've seen the inventory, the duplicates, the legacy classes, and the inheritan
 
 ## 💬 Prompt to Bob
 
-1. Make sure **Plan Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Plan** under **Modes**, and enter the following prompt:
 
   ```
   Help me create a cleaning plan based on everything you've seen in our

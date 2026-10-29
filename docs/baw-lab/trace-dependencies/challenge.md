@@ -23,7 +23,7 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 1. In the Bob IDE Explorer panel, expand the `lab-4/` folder and confirm `OrderFulfillment.twx` is present. Do **not** open, rename, or move it. The folder also contains a README file. Please don't open it yet, because it contains the answers to the later challenges.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
 
    ```
    Analyze business object dependencies of the following twx file: 

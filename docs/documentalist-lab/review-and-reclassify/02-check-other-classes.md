@@ -11,7 +11,7 @@ The audit found 2 issues in `HRDocument`. But what about documents in your names
 
 :::
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     Check the document classes of the documents starting with DUP001 and see 

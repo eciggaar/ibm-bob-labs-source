@@ -12,7 +12,7 @@ Bob has diagnosed the problem. Now you'll ask him to fix it — reclassifying th
 :::
 
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     Go ahead and fix document xxxxxx. Reclassify it as HRDocument and set 

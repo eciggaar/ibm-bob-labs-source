@@ -4,7 +4,7 @@ Now that you have the full list, you want Bob to flag anything suspicious — du
 
 ## 💬 Prompt to Bob
 
-1. Make sure **Ask Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Ask** under **Modes**, and enter the following prompt:
 
    ```
    Looking at that class inventory, which classes look like duplicates, 

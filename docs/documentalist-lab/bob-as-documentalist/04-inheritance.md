@@ -4,7 +4,7 @@ A business analyst in the room asks: *"Why does HRDocument have 108 properties? 
 
 ## 💬 Prompt to Bob
 
-1. Make sure **Ask Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Ask** under **Modes**, and enter the following prompt:
 
     ```
     Can you explain the relationship between the base Document class and 

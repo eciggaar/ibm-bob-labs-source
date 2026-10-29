@@ -29,7 +29,7 @@ You need a complete inventory of all document classes. Instead of navigating the
 
 ## 💬 Prompt to Bob
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
    ```
    I want to better understand our content repository. Can you give me a 

@@ -10,7 +10,7 @@ All 5 misclassified documents have been fixed. You want a final governance healt
 
 :::
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
       ```
       Now that all the misclassified documents are fixed in my namespace

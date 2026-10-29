@@ -32,7 +32,7 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 1. In the Bob IDE Explorer panel, expand the `lab-2/` folder and confirm `ClaimsProcessing.twx` is present. Do **not** open, rename, or move it.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
 
    ```
    Please analyze the toolkit dependencies of ClaimsProcessing.twx.
@@ -86,7 +86,7 @@ Imagine you are about to promote `ClaimsProcessing` to production. Before you ch
 
 Before you upgrade `RulesEngine`, you need to know exactly which artifacts depend on it. Ask Bob in the same chat.
 
-1. Stay in the same chat in **IBM BAW Author** mode and enter the following prompt:
+1. Stay in the same chat. Check that **IBM BAW Author** is still the active mode (click the **+** at the bottom left of the chat input; the active mode has a checkmark under **Modes**), and enter the following prompt:
 
    ```
    Which artifacts in ClaimsProcessing.twx use the RulesEngine toolkit?

@@ -9,7 +9,7 @@ Replace the example values below with your actual employee data from the script 
 
 1. Start a new task in IBM Bob by clicking the `+` sign on top of the Bob chat panel.
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     Help me to upload the HR documents for my remaining 4 employees. The files

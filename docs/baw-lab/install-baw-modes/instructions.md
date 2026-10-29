@@ -211,12 +211,12 @@ The installer does the following:
 1. Quit Bob IDE completely and start it again, so Bob loads the new modes and skills.
 1. Make sure `labs` is open as your workspace. If it is not, open it again with **File → Open Folder…**.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
-1. Click the **mode selector** at the bottom of the chat input.
-1. Confirm that **IBM BAW Author** and **IBM BAW Admin** are in the list.
+1. Click the **+** at the bottom left of the chat input. A menu opens with **Upload files** and a **Modes** list.
+1. Confirm that **IBM BAW Author** and **IBM BAW Admin** are in the **Modes** list. If you have many modes, use **Search modes…** to find them.
 1. Select **IBM BAW Author**.
 
 ::: info ✅ **Final Checkpoint**
-- **IBM BAW Author** and **IBM BAW Admin** are listed in the mode selector.
+- **IBM BAW Author** and **IBM BAW Admin** are listed under **Modes** in the **+** menu.
 - `labs` is the open workspace, with the folders `lab-1` to `lab-4`.
 
 You are ready to start Lab 1.

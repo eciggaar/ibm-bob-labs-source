@@ -12,7 +12,7 @@ The files are ready. Now you'll ask Bob to upload the first employee's documents
 
 1. Start a new task in IBM Bob by clicking the `+` sign on top of the Bob chat panel.
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
       ```
       Upload all HR documents for my first employee to the repository. The files

@@ -42,7 +42,7 @@ You want Bob to find all HR documents in your namespace that are missing critica
 
 1. Start a new task in IBM Bob by clicking the `+` sign on top of the Bob chat panel.
 
-1. Next, switch to **Agent Mode** and enter the following prompt:
+1. Next, click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     I want to run a classification audit on my HR documents in namespace 

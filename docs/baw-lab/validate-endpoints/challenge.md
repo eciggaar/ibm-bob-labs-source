@@ -43,7 +43,7 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
 1. In the Bob IDE Explorer panel, expand the `lab-3/` folder and confirm that `OrderManagement.twx`, `source.properties`, and `target.properties` are present. Do **not** open, rename, or move them.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Make sure **IBM BAW Author** mode is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
 
    ```
    I want to validate my process app before moving it to a new server.

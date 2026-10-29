@@ -7,7 +7,7 @@ One document is fixed. Now you'll ask Bob to process the remaining misclassified
 - Keep the chat open and **approve each step** when prompted. Bob will ask for confirmation before e.g. invoking skills, executing commands and creating files.
 :::
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     Now fix the remaining misclassified documents using the same approach. 

@@ -168,7 +168,7 @@ Open scavenger-notes.md and mark the "Editor" and "Bob Chat Panel" items as comp
 
 ### Background
 
-Bob operates in **modes**, each with a defined set of permissions and a specific role. The **Mode Selector** is the dropdown to the **left of the chat input field**. Built-in modes include:
+Bob operates in **modes**, each with a defined set of permissions and a specific role. The **Mode Selector** is in the **+** menu at the **bottom left of the chat input**. Click **+** to open a menu with **Upload files** and a **Modes** list; the active mode has a checkmark. Built-in modes include:
 
 | Mode  | What Bob can do |
 |-------|----------------|
@@ -176,12 +176,12 @@ Bob operates in **modes**, each with a defined set of permissions and a specific
 | **Ask**   | Read files only — safe for exploring code |
 | **Plan**  | Read and plan — no writes or commands |
 
-You can also switch modes with the keyboard shortcut **Cmd + .** (macOS) / **Ctrl + .** (Windows/Linux).
+You can also cycle through the modes with the keyboard shortcut **Cmd + .** (macOS) / **Ctrl + .** (Windows/Linux).
 
 ### Challenge 4A — Explore the mode selector
 
-1. Look at the bottom of the Bob Chat Panel. To the left of the text input field you will see a dropdown showing the current mode (e.g. **Agent**).
-2. Click the dropdown and switch to **Ask** mode.
+1. Look at the bottom of the Bob Chat Panel. At the bottom left of the text input field you will see a **+** button. Click it to open the menu. Under **Modes** you see the available modes (e.g. **Agent**, **Plan**, **Ask**); the active mode has a checkmark.
+2. In the **Modes** list, select **Ask**.
 3. In the chat input, type:
 
 ```
@@ -192,9 +192,9 @@ What is the purpose of the .bob folder?
 
 ### Challenge 4B — Switch back to Agent mode
 
-1. Click the mode selector dropdown again and switch back to **Agent** mode.
+1. Click the **+** at the bottom left of the chat input again and, under **Modes**, select **Agent**.
 
-✅ **Checkpoint:** You have successfully switched between Ask mode and Agent mode using the mode selector dropdown. The current mode shown in the selector is **Agent**.
+✅ **Checkpoint:** You have successfully switched between Ask mode and Agent mode using the **+** menu. **Agent** has the checkmark under **Modes**.
 
 ## 🖥️ Clue 5 — The Engine Room (Integrated Terminal)
 
@@ -264,7 +264,7 @@ You can create modes through the **Settings → Modes** UI or by editing the YAM
 
 ### Challenge 6A — Create a custom mode via the UI
 
-1. Click the **gear icon** (⚙️) inside the **Mode Selector** dropdown (next to the mode name), or go to **Settings → Modes**.
+1. Click the **gear icon** (⚙️) next to **Modes** in the **+** menu at the bottom left of the chat input, or go to **Settings → Modes**.
 2. Click the **+** (Add) icon to create a new mode.
 3. Fill in the following values:
 
@@ -332,7 +332,7 @@ EOF
 
 ### Challenge 6C — Use your custom mode
 
-1. Click the mode selector dropdown at the bottom of the Chat Panel.
+1. Click the **+** at the bottom left of the chat input to open the menu with the **Modes** list.
 2. Confirm **📝 Doc Writer** appears in the list.
 3. Switch to it and send the following message:
 
@@ -343,7 +343,7 @@ What kind of tasks are you best suited for?
 4. Read Bob's response — it should reflect the Doc Writer role definition.
 5. Switch back to **Agent** mode when done.
 
-✅ **Checkpoint:** `.bob/custom_modes.yaml` exists, the mode selector shows **📝 Doc Writer**, and Bob responded in character when you asked it about its purpose.
+✅ **Checkpoint:** `.bob/custom_modes.yaml` exists, the **Modes** list in the **+** menu shows **📝 Doc Writer**, and Bob responded in character when you asked it about its purpose.
 
 ## 📋 Clue 7 — The Standing Orders (Rules)
 
@@ -421,7 +421,7 @@ EOF
 
 ### Challenge 7C — Verify rules are loaded
 
-1. Switch to **Agent** mode in the mode selector.
+1. Click the **+** at the bottom left of the chat input and, under **Modes**, select **Agent**.
 2. Start a new chat and ask:
 
 ```
@@ -674,9 +674,9 @@ Open `scavenger-notes.md` in the Editor and mark all remaining items as complete
 | **Explorer**         | Left activity bar — file tree icon            | n/a                                                     |
 | **Editor**           | Central pane — tabs for open files            | n/a                                                     |
 | **Bob Chat Panel**   | Right-side panel (Option+Cmd+B / Ctrl+Alt+B)  | n/a                                                     |
-| **Mode Selector**    | Dropdown left of chat input                   | n/a                                                     |
+| **Mode Selector**    | **+** menu, bottom left of chat input           | n/a                                                     |
 | **Terminal**         | Bottom pane (Ctrl + `` ` ``)                  | n/a                                                     |
-| **Modes**            | Settings ⚙️ → Modes tab or Mode Selector gear | `.bob/custom_modes.yaml` / `~/.bob/settings/custom_modes.yaml` |
+| **Modes**            | Settings ⚙️ → Modes tab or gear next to Modes in the + menu | `.bob/custom_modes.yaml` / `~/.bob/settings/custom_modes.yaml` |
 | **Rules**            | `.bob/rules/` or `.bob/rules-{slug}/`         | `.bob/rules/` / `~/.bob/rules/`                         |
 | **Skills**           | `.bob/skills/<name>/SKILL.md`                 | `.bob/skills/` / `~/.bob/skills/`                       |
 | **Context Window**   | Chat panel footer / header meter (`+` New Chat) | Token budget & `.bob/rules/` loading                   |

@@ -11,7 +11,7 @@ During the audit you've found a number of problematic documents. Before fixing t
 :::
 
 
-1. Make sure **Ask Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Ask** under **Modes**, and enter the following prompt:
 
     ```
     Look at the document that was filed under the base Document class.

@@ -8,7 +8,7 @@ Before moving on, you want to verify that the documents were uploaded correctly.
 - Replace the example values below with your actual employee data from the script output.
 :::
 
-1. Make sure **Agent Mode** is selected and enter the following prompt:
+1. Click the **+** at the bottom left of the chat input, select **Agent** under **Modes**, and enter the following prompt:
 
     ```
     Can you verify that <FIRST_THREE_CHARS_OF_LASTNAME>001's January 2024 
