@@ -21,7 +21,7 @@ The `baw-toolkit-analyzer` skill analyzes the toolkit dependencies of a process 
 
 Bob combines deterministic static dependency scanning of the TWX with natural language reasoning, allowing you to not only generate comprehensive dependency graphs but also query complex impact questions conversationally.
 
-The skill has three analysis modes: a **full** analysis of all toolkit dependencies (the default), **where-used** to find which artifacts use a given toolkit, and **what-uses** to list which toolkit items a given artifact consumes. In this challenge you run the full analysis.
+By default, the skill runs a full analysis of all toolkit dependencies. In this lab you run the full analysis first, then drill down conversationally in Challenge 3.
 
 The lab application is `ClaimsProcessing.twx`, an insurance claims process application. It declares four toolkits: System Data (`TWSYS`), ClaimsUtilities (`CU`), RulesEngine (`RE`), and LegacyReports (`LR`).
 

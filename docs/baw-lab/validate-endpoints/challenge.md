@@ -23,13 +23,7 @@ Unlike a one-question skill, it is designed to be interactive. Your prompt conta
 
 Bob does not assume which environment a block belongs to. It reads your labels, so state clearly what is source and what is target — a swapped assignment produces an inverted endpoint map and wrong findings.
 
-Bob can also see the files in your workspace. If it finds environment files next to the TWX, it may use them instead of asking. The prompt in Challenge 1 tells Bob to ask, so you see the interactive flow.
-
-Once the inputs are known, Bob builds a map of the source hostnames, database hosts, and install paths, and scans the XML in the TWX for those source values only. Target values are never searched. Each finding gets a severity:
-
-- **🔴 Critical:** a source value on a line containing a URL (`http://`, `https://`), `urlTemplate`, WSDL, `jdbc:`, or a hostname tag — regardless of what else is on the line.
-- **🟡 Warning:** a source value in a script, default value, or parameter with no URL context. BAW-internal `localhost` URLs (for example `/portal`, `/teamworks`, `/rest/bpm`) are also warnings, annotated *BAW-internal — resolves locally, no change needed*.
-- **ℹ️ Info:** low priority.
+Once the inputs are known, Bob builds a map of the source hostnames, database hosts, and install paths, and scans the XML in the TWX for those source values only. Target values are never searched. Each finding is assigned a severity (🔴 Critical, 🟡 Warning, or ℹ️ Info) based on the context in which the source value appears.
 
 Bob then writes a Markdown report and summarizes it in the chat, with fix guidance for each critical finding. The skill reports and explains. It does not patch the TWX or change any configuration.
 
@@ -77,10 +71,6 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
    Always label each file as source or target in your answer. If you give a file without a label, Bob asks which environment it belongs to.
    :::
 
-   ::: info 💡 **Context-Aware Discovery vs Interactive Intake**
-   Bob is designed to be intelligent and context-aware—if environment files exist in the workspace, it can automatically detect them to save you time. In this lab, we explicitly instruct Bob with step-by-step guidance to demonstrate conversational data intake.
-   :::
-
 ::: info ✅ **Checkpoint**
 - Bob asked you for the deployment type, the source endpoints, and the target endpoints.
 - Bob has stated which file it uses as the source and which as the target.
@@ -116,18 +106,26 @@ Every finding depends on Bob having the source and target the right way round. V
    There are **five distinct problems** across **four artifacts** in this TWX. Look for all five in the findings table. Bob may surface the echo hits as separate rows or collapse them into notes — either way is correct. What matters is that all five problems are present, not the total row count.
    :::
 
-1. For each **Critical** finding, note the artifact name, its type, the step or variable, and the **Where to fix** value. The report contains critical findings in four artifacts. Three are definite blockers:
+1. For each **Critical** finding in the report, verify the artifact name, its type, what is hardcoded, and the **Where to fix** value. Use the table below as a checklist — confirm each row against what you see in the report:
 
+   | Artifact | Type | What is hardcoded | Where to fix |
+   |---|---|---|---|
+   | `Check Inventory and Pricing` | *(confirm)* | *(confirm — how many script tasks?)* | *(confirm — which tab in Workflow Designer?)* |
+   | `Send Order Confirmation` | *(confirm)* | *(confirm — which service and URL?)* | *(confirm — which tab?)* |
+   | `Order Management Environment Variables` | *(confirm)* | *(confirm — which variable types?)* | *(confirm — Workflow Designer tab, and what else?)* |
+
+   The fourth artifact, `Submit Payment`, is flagged as a conditional blocker. You deal with it in step 4.
+
+   ::: details ✅ Expected values (check after completing the table)
    | Artifact | Type | What is hardcoded | Where to fix |
    |---|---|---|---|
    | `Check Inventory and Pricing` | Service Flow | `baw-source.mycompany.com` in two script tasks — one builds an `InventoryService` URL, one a `PricingService` URL | Workflow Designer → open the service flow → each script task → **Script** tab |
    | `Send Order Confirmation` | Service Flow | `http://baw-source.mycompany.com:9443/NotificationService/…` in a script task | Workflow Designer → open the service flow → the `NotificationService` script task → **Script** tab |
    | `Order Management Environment Variables` | Environment Variable Set | a variable holding `http://baw-source…` and a variable holding `jdbc:db2://db-source…` | Workflow Designer → process app **Variables** tab → update the default values; then override on the target via Process Admin Console |
-
-   The fourth, `Submit Payment`, is a conditional blocker. You deal with it in step 4.
+   :::
 
    ::: info 🔎 **Why not the Servers tab?**
-   A URL typed into a script is a plain string. It is not a server entry, so changing the **Servers** tab in Process App Settings does not change it, and neither does the Process Admin Console. These findings need a code change in Workflow Designer. The better long-term fix, which the report may suggest, is to replace the string with a REST server entry or an environment variable, so the next migration needs no code change. You know this distinction well from your own projects. Bob's report is only useful if it points to the right place, so check it.
+   A URL typed into a script is a plain string — it is not a REST server entry. The fix path depends on where the value lives: some findings need a code change in Workflow Designer and a new snapshot, others can be updated via Process Admin Console without a new snapshot. Challenge 4 walks through the distinction.
    :::
 
 1. Review the **Warning** finding. Find the one annotated *BAW-internal — resolves locally, no change needed* (Bob may word the note slightly differently). This is a `localhost/portal` URL in the `Notify Customer Order Ready` service flow — a link to the BAW Portal task view that resolves correctly on any stand-alone BAW server and does **not** block the migration.

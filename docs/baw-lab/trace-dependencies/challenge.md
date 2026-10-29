@@ -10,18 +10,9 @@ prev:
 
 ### Background
 
-The `baw-dependency-mapper` skill analyzes how Business Objects (BOs) and variables are used across a process application from its TWX export. It does not need a connection to a BAW server. When you provide a TWX file without specifying a single Business Object name, Bob discovers all BOs defined in the application and runs a dependency analysis for each one.
+The `baw-dependency-mapper` skill analyzes how Business Objects (BOs) and variables are used across a process application from its TWX export. It does not need a connection to a BAW server.
 
-For each Business Object, the skill identifies:
-
-- **Declarations:** Where the variable or BO is instantiated across process apps and services.
-- **Read & write usages:** Which activities, server scripts, and service steps read or modify it.
-- **Service bindings:** Input and output data mappings across service flow boundaries.
-- **Coach bindings:** User interface controls and coach views bound directly to the BO or its fields.
-- **Issues detected:** Potential data flow anomalies, including circular references between BOs, over-coupling (a BO mutated across too many writer services), write-only variables, missing output mappings, unused BO types, and stale coach bindings.
-- **Impact assessment:** An advisory risk assessment covering field additions, removals, renames, type changes, or full BO deletion.
-
-Bob combines deterministic static parsing of the TWX file with natural language reasoning, writing structured reports (`<BO>-dependency-report.md` and `.json`) to your specified folder while delivering an interactive dependency summary in the chat.
+The central challenge it addresses is this: in a BAW application with multiple processes, services, and coaches all sharing the same data structures, it is not obvious what breaks when you rename a field, change a type, or delete a Business Object. The skill maps every place a BO is declared, read, written, bound to a service, or bound to a coach — so you can assess the impact before making a change.
 
 The lab application is `OrderFulfillment.twx`, an order fulfillment process application modeling an end-to-end order lifecycle with order placement, validation, inventory check, warehouse operator review, payment processing, and shipment creation. It defines five Business Objects: `Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`.
 
@@ -42,7 +33,7 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
    ```
 
    ::: tip 💡 **Deterministic Scanning & AI Synthesis**
-   Bob uses deterministic static analysis tools under the hood for 100% structural precision when parsing TWX XML, and applies AI reasoning to synthesize cross-service data flows, answer complex dependency questions, and generate actionable refactoring plans.
+   Bob uses deterministic static analysis tools to parse the TWX structure and applies natural language reasoning to synthesize cross-service data flows, answer complex dependency questions, and generate actionable refactoring plans.
    :::
 
 1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve actions as prompted, and wait until Bob presents the combined dependency summary before starting another prompt or closing the chat.

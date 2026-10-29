@@ -12,8 +12,6 @@ next:
 
 ### Background
 
-The `baw-project-doc` skill automates the extraction and synthesis of BAW application documentation directly from an exported TWX archive. It parses process models, services, business objects, coach views, and environment variables to produce structured Markdown documentation tailored to your chosen stakeholder audience.
-
 The **Hiring Sample** (`Hiring_Sample - Responsive_Hiring_Sample_v18001.twx`) is IBM's canonical demo application. It models a complete hiring process: candidates are submitted, screened by HR, interviewed by the hiring manager, and either approved or rejected — with notifications and escalations along the way.
 
 ---
