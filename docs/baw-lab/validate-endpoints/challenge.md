@@ -1,10 +1,11 @@
 ---
-title: Validate the endpoints
+title: Validate Endpoints Before Migration
+aside: false
+duration: ~10
 prev:
   text: 'Lab 3: Overview'
 next:
   text: 'Lab 4: Overview'
-
 ---
 
 ## 🏷️ Clue 1 - The Old Address
@@ -15,7 +16,7 @@ next:
 
 The `baw-endpoint-validation` skill compares the endpoints of the environment you are leaving (the **source**) with the environment you are moving to (the **target**), and scans a TWX export for hardcoded references to the source. It does not need a connection to a BAW server when you give it a local TWX file and the environment settings as files.
 
-Unlike a one-question skill, it is designed to be interactive. Your prompt contains only the TWX file, so Bob needs the following from you:
+The skill needs the following inputs before it can scan. Bob asks for any that you don't provide up front:
 
 - **Deployment type:** traditional on-premises BAW or CP4BA containerized.
 - **Source endpoints:** a BPMConfig `.properties` file for the source environment.
@@ -23,7 +24,7 @@ Unlike a one-question skill, it is designed to be interactive. Your prompt conta
 
 Bob does not assume which environment a block belongs to. It reads your labels, so state clearly what is source and what is target — a swapped assignment produces an inverted endpoint map and wrong findings.
 
-Once the inputs are known, Bob builds a map of the source hostnames, database hosts, and install paths, and scans the XML in the TWX for those source values only. Target values are never searched. Each finding is assigned a severity (🔴 Critical, 🟡 Warning, or ℹ️ Info) based on the context in which the source value appears.
+Once the inputs are known, Bob builds a map of the source hostnames, database hosts, and install paths, and scans the XML in the TWX for those source values only. Target values are never searched, because the scan looks for references that still point to the environment you are leaving. A target value that is already in the TWX is not a problem. Each finding is assigned a severity (🔴 Critical, 🟡 Warning, or ℹ️ Info) based on the context in which the source value appears.
 
 Bob then writes a Markdown report and summarizes it in the chat, with fix guidance for each critical finding. The skill reports and explains. It does not patch the TWX or change any configuration.
 
@@ -43,7 +44,7 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
 1. In the Bob IDE Explorer panel, expand the `lab-3/` folder and confirm that `OrderManagement.twx`, `source.properties`, and `target.properties` are present. Do **not** open, rename, or move them.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
+1. Make sure **IBM BAW Author** is the active mode. Click the **+** at the bottom left of the chat input and look under **Modes**: the active mode should have a checkmark. If not, select **IBM BAW Author**. Then enter the following prompt:
 
    ```
    I want to validate my process app before moving it to a new server.
@@ -63,7 +64,7 @@ The lab application is `OrderManagement.twx` — an order fulfilment process tha
 
    | When Bob asks about… | Answer |
    |----------------------|--------|
-   | The deployment type | **Traditional BAW on-premises / VM installation** |
+   | The deployment type | Choose the option that says both servers are **traditional BAW (on-premises / VM)**. <br>Bob's wording might slightly differ from run to run. |
    | The source endpoints | The **source** environment is described in `lab-3/source.properties` |
    | The target endpoints | The **target** environment is described in `lab-3/target.properties` |
 
@@ -88,7 +89,7 @@ Every finding depends on Bob having the source and target the right way round. V
 1. Compare them with the two environment files you supplied:
    - The *source* column must contain `baw-source.mycompany.com` (BAW hostname), `db-source.mycompany.com` (database hostname), and `C:\IBM\BAW26` (install path).
    - The *target* column must contain `baw-prod.mycompany.com`, `db-prod.mycompany.com`, and `C:\IBM\BAW26_PROD`.
-1. Check one value that did **not** change, for example the database port `50000` or the HTTPS port `9443`. Bob should show it as unchanged, not as a change.
+1. Check that no row in the mapping shows the same value in the Source and Target columns as a change. Ports such as `50000` and `9443` are identical in `source.properties` and `target.properties`, so if they appear at all, they must not be marked as changed.
 
 ::: info ✅ **Checkpoint**
 - Source and target are the right way round in both tables, and all three source hostnames and the install path appear in the mapping.
@@ -102,8 +103,10 @@ Every finding depends on Bob having the source and target the right way round. V
 
    ::: tip 💡 Why there are more hits than problems
    BAW stores each service flow script in three places inside the TWX: the editable script block, a `jsonData` snapshot, and a `bpmn2Model` block. One hardcoded URL in one script task therefore produces up to three raw hits in the scan — one actionable, two auto-generated echoes that disappear when you re-save the artifact in Designer.
+   :::
 
-   There are **five distinct problems** across **four artifacts** in this TWX. Look for all five in the findings table. Bob may surface the echo hits as separate rows or collapse them into notes — either way is correct. What matters is that all five problems are present, not the total row count.
+   ::: tip 💡 What to look for in the findings table
+   The hardcoded values are spread across **four artifacts** in this TWX. Look for these in the findings table: the `InventoryService` and `PricingService` URLs in `Check Inventory and Pricing`, the notification service URL in `Send Order Confirmation`, an API URL and a database URL in the environment variables, and the `localhost:8080` payment gateway URL in `Submit Payment`. Bob may list the two environment variables in one row or in two, and may surface the echo hits as separate rows or collapse them into notes — either way is correct. What matters is that all of these values are present, not the total row count.
    :::
 
 1. For each **Critical** finding in the report, verify the artifact name, its type, what is hardcoded, and the **Where to fix** value. Use the table below as a checklist — confirm each row against what you see in the report:
@@ -128,17 +131,18 @@ Every finding depends on Bob having the source and target the right way round. V
    A URL typed into a script is a plain string — it is not a REST server entry. The fix path depends on where the value lives: some findings need a code change in Workflow Designer and a new snapshot, others can be updated via Process Admin Console without a new snapshot. Challenge 4 walks through the distinction.
    :::
 
-1. Review the **Warning** finding. Find the one annotated *BAW-internal — resolves locally, no change needed* (Bob may word the note slightly differently). This is a `localhost/portal` URL in the `Notify Customer Order Ready` service flow — a link to the BAW Portal task view that resolves correctly on any stand-alone BAW server and does **not** block the migration.
+1. Review the **Warning** finding. Find the one annotated as BAW-internal and resolving locally (Bob may word the note slightly differently). This is a `localhost/portal` URL in the `Notify Customer Order Ready` service flow — a link to the BAW Portal that resolves correctly on a stand-alone BAW server, so it does **not** need to change for the migration. The skill only flags it as a concern if your target requires HTTPS.
 
 1. Now find the **Critical** finding in `Submit Payment`. It uses `localhost:8080/PaymentGateway` — a non-BAW context root. On the source server the payment gateway ran as a co-located sidecar. Whether this breaks depends on the target topology, so Bob flags it as a **conditional blocker**. Bob cannot know your topology, so you tell it. In the same chat, send:
 
    ```
-   The payment gateway is not co-located on the target BAW server — it runs on 
-   a dedicated host. Please update the report: reclassify the Submit Payment 
-   finding and the overall readiness.
+   The payment gateway is not co-located on the target BAW server — it runs on a dedicated host. Please update the 
+   report: reclassify the Submit Payment finding and the overall readiness.
    ```
 
-   Bob should now treat the finding as a definite blocker, update the report, and explain how to fix it: replace the hardcoded URL with the dedicated host, preferably through a REST server entry in Process App Settings. If Bob asked you this question earlier, your earlier answer already applies. Reply with the same information and check that the report reflects it.
+   Bob should now treat the finding as a definite blocker, update the report, and explain how to fix it: replace the hardcoded URL with the dedicated host, preferably through a REST server entry in Process App Settings. 
+   
+1. Check that the report now shows the `Submit Payment` finding as a definite blocker.
 
 1. Answer these questions from your own report — read the findings table yourself, or ask Bob in the same chat:
    - Which artifact contains the `jdbc:db2://` URL, and in which tab is it fixed?
@@ -159,18 +163,13 @@ Every finding depends on Bob having the source and target the right way round. V
 1. In the **same Bob chat session**, ask a follow-up question:
 
    ```
-   The snapshot is already installed on the target and REST calls fail 
-   because the server URL still points to baw-source.mycompany.com. How do I 
-   update it without re-importing the TWX?
+   The snapshot is already installed on the target and REST calls fail because the server URL still points to 
+   baw-source.mycompany.com. How do I update it without re-importing the TWX?
    ```
 
 1. Review Bob's answer. It should point you to the **Process Admin Console** → **Installed Apps** → the snapshot's overflow menu → **App Details** → **Servers** tab, where you update the hostname, port, and secure server setting of each REST server binding.
 
-   ::: tip 💡 **Tip** 
-   Bob explains where to make each change. You make it yourself in Workflow Designer, the Process Admin Console, or on the target server — the skill never edits your TWX.
-   :::
-
-1. Compare this answer with Challenge 3. The Process Admin Console changes **REST server bindings** on an installed snapshot. It does not change URLs typed into scripts. Which of the findings in your report could be fixed this way, and which still need a new snapshot built in Workflow Designer?
+1. Go back to the Critical findings you triaged in Challenge 3. The Process Admin Console changes **REST server bindings** on an installed snapshot. It does not change URLs typed into scripts. For each Critical finding, decide whether it could be fixed this way or needs a new snapshot built in Workflow Designer. 
 
 ::: info ✅ **Final Checkpoint**
 - The validation report exists, source and target are correct in the endpoint mapping, you have triaged all Critical and Warning findings, and you know whether the `OrderManagement` process app is ready to install on `baw-prod.mycompany.com` and where each blocker is fixed.
