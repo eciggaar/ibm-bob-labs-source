@@ -7,6 +7,7 @@ import { createMermaidRenderer } from 'vitepress-mermaid-renderer'
 import 'vitepress-mermaid-renderer/css'
 import Card from './components/Card.vue'
 import CardGrid from './components/CardGrid.vue'
+import PageHeader from './components/PageHeader.vue'
 
 export default {
   extends: DefaultTheme,
@@ -26,7 +27,9 @@ export default {
       () => initMermaid()
     )
 
-    return h(DefaultTheme.Layout)
+    return h(DefaultTheme.Layout, null, {
+      'doc-before': () => h(PageHeader)
+    })
   },
   enhanceApp({ app }) {
     enhanceAppWithTabs(app)
