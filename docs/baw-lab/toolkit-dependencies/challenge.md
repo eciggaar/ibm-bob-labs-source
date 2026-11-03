@@ -1,5 +1,7 @@
 ---
 title: Assess the toolkit upgrade impact
+aside: false
+duration: ~10
 prev:
   text: 'Lab 2: Overview'
 next:
@@ -32,7 +34,7 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
 1. In the Bob IDE Explorer panel, expand the `lab-2/` folder and confirm `ClaimsProcessing.twx` is present. Do **not** open, rename, or move it.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
+1. Make sure **IBM BAW Author** is the active mode. Click the **+** at the bottom left of the chat input and look under **Modes**: the active mode should have a checkmark. If not, select **IBM BAW Author**. Then enter the following prompt:
 
    ```
    Please analyze the toolkit dependencies of ClaimsProcessing.twx.
@@ -40,7 +42,9 @@ The lab application is `ClaimsProcessing.twx`, an insurance claims process appli
    Write any output to docs/lab2-output/
    ```
 
-1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve each action individually as Bob runs the analysis and writes the report.
+1. Press **Enter** and click **Approve skill tools for task** when prompted. 
+
+1. Next, **approve each action** individually as Bob runs the analysis and writes the report.
 
 ::: tip 💡 **Tip:** The TWX file is the only input the skill needs. Bob defaults to full analysis automatically.
 :::
@@ -70,14 +74,14 @@ Imagine you are about to promote `ClaimsProcessing` to production. Before you ch
    - Which toolkit has no references from any artifact, and is therefore a candidate to remove?
    - Which two artifacts contain a reference that cannot be resolved to a declared toolkit?
    - Which toolkit is referenced at two different snapshots, and through which direct toolkits?
-1. In the dependency graph, follow the lines from `ClaimsProcessing` through `CU` and `RE` and confirm where the two snapshots meet.
+1. Look up the **Transitive Dependencies** section of the report and find the two rows for `SharedTypes` (`ST`). Confirm that `CU` brings in `ST` at `2024-03` and `RE` brings in `ST` at `2025-01`. This is the snapshot conflict listed in the Executive Summary.
 
 ::: info ✅ **Checkpoint**
 - The Executive Summary lists **4 issues**: two dangling references, one snapshot conflict, and one unused toolkit.
 - `LegacyReports` (`LR`) is shown as having no direct references, and the recommendations advise verifying and then removing it.
 - The two dangling references are in `Run Fraud Detection` and `Notify Supervisor Adjuster Overdue`.
 - `SharedTypes` (`ST`) appears at snapshot `2024-03` via `CU` and at `2025-01` via `RE`.
-- The dependency graph renders as a diagram in the Markdown preview.
+- The dependency graph renders as a diagram in the Markdown preview, showing `ClaimsProcessing` at the root with its four direct toolkits.
 :::
 
 ---
@@ -91,18 +95,18 @@ Before you upgrade `RulesEngine`, you need to know exactly which artifacts depen
    ```
    Which artifacts in ClaimsProcessing.twx use the RulesEngine toolkit?
    ```
-
-1. Press **Enter** and approve each action as it appears.
+   
+1. Approve each action as it appears.
 
    ::: tip ℹ️ **NOTE** 
    Notice how you stayed in the same chat and asked in plain language. Bob maintains conversation context, recognizing the target toolkit and automatically switching from the initial `full` analysis mode to a targeted `where-used` drill-down without requiring CLI flags or manual reconfiguration.
    :::
 
 1. Read Bob's answer and review the regenerated report:
-   - In the chat, Bob provides a detailed analysis naming the declared dependency on `RulesEngine` (`RE`) and each artifact using it (`ClaimRequest` and `Calculate Settlement Amount`).
-   - Open `toolkit-dependency-report.md` in the Explorer to confirm the report has been dynamically regenerated and ends with a **Where Used: `RE`** section recording the drill-down target.
+   - In the chat, Bob provides a detailed analysis naming the declared dependency on `RulesEngine` (`RE`) and the artifact using it (`Calculate Settlement Amount`).
+   - Open `toolkit-dependency-report.md` in the Explorer to confirm the report has been dynamically regenerated and ends with a **Where Used: `RulesEngine`** section recording the drill-down target.
 
 ::: info ✅ **Final Checkpoint**
-- Bob lists two artifacts that use `RulesEngine`: the business object `ClaimRequest` and the service flow `Calculate Settlement Amount` (which uses `CalculateDeductible`).
-- You can state the upgrade impact: a change to `RulesEngine` affects those two artifacts, and updating it also touches the `SharedTypes` snapshot conflict you found in Challenge 2.
+- Bob lists one artifact that uses `RulesEngine`: the service flow `Calculate Settlement Amount` (which uses `CalculateDeductible`).
+- You can state the upgrade impact: a change to `RulesEngine` affects that artifact, and updating it also touches the `SharedTypes` snapshot conflict you found in Challenge 2.
 :::
