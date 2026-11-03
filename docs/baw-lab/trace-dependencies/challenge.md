@@ -1,5 +1,7 @@
 ---
-title: Trace the dependencies
+title: Understand Dependencies Before Change
+aside: false
+duration: ~10
 prev:
   text: 'Lab 4: Overview'
 ---
@@ -12,7 +14,7 @@ prev:
 
 The `baw-dependency-mapper` skill analyzes how Business Objects (BOs) and variables are used across a process application from its TWX export. It does not need a connection to a BAW server.
 
-The central challenge it addresses is this: in a BAW application with multiple processes, services, and coaches all sharing the same data structures, it is not obvious what breaks when you rename a field, change a type, or delete a Business Object. The skill maps every place a BO is declared, read, written, bound to a service, or bound to a coach — so you can assess the impact before making a change.
+The central challenge it addresses is this: in a BAW application with multiple processes, services, and coaches all sharing the same data structures, it is not obvious what breaks when you rename a field, change a type, or delete a Business Object. The `baw-dependency-mapper` skill maps every place a BO is declared, read, written, bound to a service, or bound to a coach — so you can assess the impact before making a change.
 
 The lab application is `OrderFulfillment.twx`, an order fulfillment process application modeling an end-to-end order lifecycle with order placement, validation, inventory check, warehouse operator review, payment processing, and shipment creation. It defines five Business Objects: `Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`.
 
@@ -20,26 +22,23 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 
 ### 🤖 Challenge 1 — Ask Bob to analyze the Business Object dependencies
 
-1. In the Bob IDE Explorer panel, expand the `lab-4/` folder and confirm `OrderFulfillment.twx` is present. Do **not** open, rename, or move it. The folder also contains a README file. Please don't open it yet, because it contains the answers to the later challenges.
+1. In the Bob IDE Explorer panel, expand the `lab-4/` folder and confirm `OrderFulfillment.twx` is present.
 1. Open the Bob Chat Panel with **Option + Cmd + B** (macOS) or **Ctrl + Alt + B** (Windows/Linux), or click the **Bob icon** beside the navigation bar.
 1. Start a **new chat** by clicking the **+** (New Chat) icon at the top of the panel.
-1. Click the **+** at the bottom left of the chat input, select **IBM BAW Author** under **Modes**, and enter the following prompt:
+1. Make sure **IBM BAW Author** is the active mode. Click the **+** at the bottom left of the chat input and look under **Modes**: the active mode should have a checkmark. If not, select **IBM BAW Author**. Then enter the following prompt:
 
    ```
-   Analyze business object dependencies of the following twx file: 
-   lab-4/OrderFulfillment.twx. 
+   Analyze business object dependencies of the following twx file: lab-4/OrderFulfillment.twx. 
    
    Write any output to docs/lab4-output/
    ```
 
-   ::: tip 💡 **Deterministic Scanning & AI Synthesis**
-   Bob uses deterministic static analysis tools to parse the TWX structure and applies natural language reasoning to synthesize cross-service data flows, answer complex dependency questions, and generate actionable refactoring plans.
-   :::
+1. Press **Enter** and click **Approve skill tools for task** when prompted. 
 
-1. Press **Enter** and click **Approve skill tools for task** when prompted. Approve actions as prompted, and wait until Bob presents the combined dependency summary before starting another prompt or closing the chat.
+1. Next, **approve each action** individually and wait until Bob presents the combined dependency summary.
 
 ::: info ✅ **Checkpoint**
-- Bob lists the five Business Objects found in the application (`Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`) and presents a combined dependency summary in the chat.
+- In the chat, you see Bob's static analysis summary listing the five Business Objects found in the application (`Address`, `Customer`, `Order`, `OrderLine`, and `ShipmentDetails`), having mapped their variable declarations, service input and output bindings, coach bindings, circular references, and sequence-flow issues.
 - In the Explorer, the folder `docs/lab4-output/` exists and contains `<BO>-dependency-report.md` and `<BO>-dependency-report.json` for each Business Object analyzed (for example, `Order-dependency-report.md` and `Order-dependency-report.json`). Bob may also create an additional summary file. That's fine.
 :::
 
@@ -64,8 +63,7 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
    - Then **ask Bob** in the same chat session to identify nested Business Objects (since the table preview truncates to the first 8 fields):
 
    ```
-   Which fields of the Order Business Object are themselves Business Objects,
-   and what are their types?
+   Which fields of the Order Business Object are themselves Business Objects, and what are their types?
    ```
 
    *Expected answer: `customer : Customer` and `lines : OrderLine` (a list).*
@@ -87,23 +85,21 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 1. In the **Service input bindings** table, find `ValidateOrder` and `CheckInventory`. Both receive `order : Order` as `dataInput`. That alone doesn't tell you whether one call is unnecessary, so **ask Bob** in the same chat session:
 
    ```
-   In the OrderFulfillment process, look at ValidateOrder and CheckInventory. 
-   Both receive the Order. Is the second call redundant? Check the process 
-   flow and the scripts.
+   In the OrderFulfillment process, look at ValidateOrder and CheckInventory. Both receive the Order. 
+   Is the second call redundant? Check the process flow and the scripts.
    ```
 
    In Bob's answer, look for what each service reads from the order and what it changes, and where the process uses those changed values later.
 
    Bob's analysis gives you a list of findings to look at. In this lab you only read the results and ask questions, so nothing in the application changes. In a real project, you decide what to change and check each finding in your own application first.
-1. **Optional:** Open `Customer-dependency-report.md` and look at the **Issues detected** section. Besides the circular reference, it contains a **Read before write** finding for the activity `Check Shipping Region` in `ValidateOrder`. Ask Bob in the same chat session:
+1. **Optional:** Open `Customer-dependency-report.md` and look at the **Issues detected** section. 
+
+   Besides the circular reference, it contains a **Read before write** finding for the activity `Check Shipping Region` in `ValidateOrder`. **Ask Bob** in the same chat session:
 
    ```
-   In ValidateOrder, the Check Shipping Region step reads the customer's 
-   shipping address. Is the customer data set before that step runs, and does 
-   this need fixing?
+   In ValidateOrder, the Check Shipping Region step reads the customer's shipping address. Is the customer data 
+   set before that step runs, and does this need fixing?
    ```
-
-   Bob can check the scripts and the Coach bindings in the TWX for you.
 
 ::: info ✅ **Checkpoint**
 - You can locate the circular reference warning (`OrderLine ↔ Order`) and the two stale coach binding warnings (`order.discount` in `PlaceOrder` and `ReviewOrder`).
@@ -113,7 +109,7 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 
 ---
 
-### ⚠️ Challenge 4 — Assess the impact of a proposed change
+### ⚖️ Challenge 4 — Assess the impact of a proposed change
 
 1. In `Order-dependency-report.md`, navigate to the **Impact assessment** section.
 1. Read the risk assessment for each change scenario:
@@ -125,8 +121,8 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
    The scenarios apply to any field of `Order`. To find out what a specific change affects, **ask Bob** in the same chat session what breaks if you rename the `totalAmount` field:
 
    ```
-   I want to rename the totalAmount field to orderTotal in the Order
-   Business Object. What artifacts would break and need to be updated?
+   I want to rename the totalAmount field to orderTotal in the Order Business Object. What artifacts would break 
+   and need to be updated?
    ```
 
    Review Bob's response and verify:
@@ -137,8 +133,7 @@ The lab application is `OrderFulfillment.twx`, an order fulfillment process appl
 1. Ask Bob to turn the analysis into a plan, in the same chat session:
 
    ```
-   In what order should I make these changes, and what should I test 
-   afterwards?
+   In what order should I make these changes, and what should I test afterwards?
    ```
 
    Bob proposes an order, typically the Business Object first, then the services, then the coaches, and lists what to test. For example, an order below 10 is still rejected, the payment log shows the amount, and the three coaches show the total. This isn't in the report. Bob turns the analysis into a work plan.
