@@ -1,5 +1,10 @@
 ---
-title: Install the BAW modes and skills
+title: Install the BAW Modes and Skills
+duration: ~5
+prev:
+  text: 'Pre-Lab: Overview'
+next:
+  text: 'Lab 1: Overview'
 ---
 
 ## 📁 Step 1 — Create the bob-baw-workshop folder
@@ -107,12 +112,14 @@ The BAW modes and skills are published in a GitHub repository. You download it a
     └── ibm-baw-skills-and-bob-modes-main/
         ├── modes/
         ├── skills/
+        ├── install.ps1
         ├── install.sh
-        └── install.ps1
+        ├── LICENSE
+        └── README.md
     ```
 
 ::: info ✅ **Checkpoint**
-- `bob-baw-workshop/ibm-baw-skills-and-bob-modes-main` contains the folders `modes` and `skills` and the files `install.sh` and `install.ps1`.
+- `bob-baw-workshop/ibm-baw-skills-and-bob-modes-main` contains the folders `modes` and `skills` and the files `install.ps1`, `install.sh`, `LICENSE` and `README.md`.
 :::
 
 ---
@@ -149,7 +156,7 @@ You run the installer from the **Integrated Terminal** in Bob IDE.
     :::
 
 ::: info ✅ **Checkpoint**
-- The listing shows `install.sh`, `install.ps1`, `modes` and `skills`.
+- The listing shows `install.ps1`, `install.sh`, `LICENSE`, `modes`, `README.md` and `skills`.
 :::
 
 ---
@@ -219,5 +226,5 @@ The installer does the following:
 - **IBM BAW Author** and **IBM BAW Admin** are listed under **Modes** in the **+** menu.
 - `labs` is the open workspace, with the folders `lab-1` to `lab-4`.
 
-You are ready to start Lab 1.
+You are ready to start the first lab.
 :::
