@@ -151,7 +151,7 @@ You run the installer from the **Integrated Terminal** in Bob IDE.
     ```
     == MacOS / Linux
     ```
-    ls
+    ls -l
     ```
     :::
 
@@ -195,7 +195,7 @@ You run the installer from the **Integrated Terminal** in Bob IDE.
     ```
     == MacOS / Linux
     ```
-    bash ./install.sh
+    ./install.sh
     ```
     :::
 
